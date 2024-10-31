@@ -4,6 +4,7 @@ module.exports = [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  ...nx.configs['flat/react'],
   {
     ignores: ['**/dist'],
   },
@@ -31,7 +32,7 @@ module.exports = [
     // Override or add rules here
     rules: {
       'quotes': ['error', 'single'],
-      'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
+      'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0, 'maxBOF': 0 }],
       'no-trailing-spaces': 'error',
       'no-multi-spaces': 'error',
 
