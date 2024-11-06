@@ -1,6 +1,8 @@
 const nx = require('@nx/eslint-plugin');
+const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 
 module.exports = [
+  eslintPluginPrettierRecommended,
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
@@ -31,8 +33,8 @@ module.exports = [
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
     rules: {
-      'quotes': ['error', 'single'],
-      'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0, 'maxBOF': 0 }],
+      quotes: ['error', 'single'],
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],
       'no-trailing-spaces': 'error',
       'no-multi-spaces': 'error',
 
@@ -50,8 +52,13 @@ module.exports = [
         'error',
         {
           'newlines-between': 'always',
-          'groups': [['external', 'builtin'], 'internal', ['parent', 'sibling', 'index'], ['object', 'unknown']]
-        }
+          groups: [
+            ['external', 'builtin'],
+            'internal',
+            ['parent', 'sibling', 'index'],
+            ['object', 'unknown'],
+          ],
+        },
       ],
       // endregion
     },

@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 export function App() {
   return (
     <div>
-  <Button>test</Button>
+      <Button>test</Button>
     </div>
   );
 }
