@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@demo-b/demo-b-design-system": ["libs/demo-b-design-system/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

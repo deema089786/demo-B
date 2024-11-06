@@ -1,11 +1,10 @@
 import './app.module.css';
-import NxWelcome from './nx-welcome';
+import { Button } from '@mui/material';
 
 export function App() {
   return (
     <div>
-
-      <NxWelcome title="demo-b-app" />
+  <Button>test</Button>
     </div>
   );
 }
