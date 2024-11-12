@@ -11,7 +11,7 @@ export const ScreenLayout: React.FC<React.PropsWithChildren> = (props) => {
       sx={{
         height: '100svh',
         overflow: 'hidden',
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
       }}
     >
       <Container

@@ -1,11 +1,18 @@
 import React from 'react';
+import { Stack, Typography } from '@mui/material';
 
-import { ScreenLayout } from '../../layout';
+import { UnauthorizedScreenLayout } from '../../layout';
+import { SignupForm } from '../../forms';
 
 export const SignupScreen: React.FC = () => {
   return (
-    <ScreenLayout>
-      <div>signup page</div>
-    </ScreenLayout>
+    <UnauthorizedScreenLayout>
+      <Stack spacing={4} py={4}>
+        <Typography textAlign="center" variant="h4" component="h1">
+          Sign Up
+        </Typography>
+        <SignupForm />
+      </Stack>
+    </UnauthorizedScreenLayout>
   );
 };

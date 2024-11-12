@@ -8,8 +8,13 @@ export const theme = createTheme({
     borderRadius: 16,
   },
   palette: {
+    text: {
+      primary: '#ffffff',
+      secondary: '#acacac',
+      disabled: '#675d5d',
+    },
     primary: {
-      main: '#556cd6',
+      main: '#e6e6e6',
     },
     secondary: {
       main: '#19857b',
@@ -17,12 +22,20 @@ export const theme = createTheme({
     error: {
       main: red.A400,
     },
+    background: {
+      default: '#1d1e22',
+      paper: '#27282e',
+    },
+  },
+  typography: {
+    fontFamily: 'Lexend',
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: 'none',
+          fontWeight: 600,
           borderRadius: 10000,
         },
       },
