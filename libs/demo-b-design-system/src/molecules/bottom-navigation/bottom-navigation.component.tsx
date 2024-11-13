@@ -1,11 +1,12 @@
 import React from 'react';
 import { Paper, Stack, IconButton } from '@mui/material';
+
 import {
-  HomeOutlined as HomeIcon,
-  SettingsOutlined as SettingsIcon,
-  FormatListBulletedOutlined as OrdersIcon,
-  NotificationsOutlined as NotificationsIcon,
-} from '@mui/icons-material';
+  HomeIcon,
+  CheckListIcon as OrdersIcon,
+  NotificationIcon,
+  SettingsIcon,
+} from '../../icons';
 
 export const BottomNavigation: React.FC = () => {
   return (
@@ -28,7 +29,7 @@ export const BottomNavigation: React.FC = () => {
         <OrdersIcon />
       </IconButton>
       <IconButton color="inherit">
-        <NotificationsIcon />
+        <NotificationIcon />
       </IconButton>
       <IconButton color="inherit">
         <SettingsIcon />
