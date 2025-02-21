@@ -16,7 +16,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@demo-b/demo-b-design-system": ["libs/demo-b-design-system/src/index.ts"]
+      "@demo-b/demo-b-design-system": [
+        "libs/demo-b-design-system/src/index.ts"
+      ],
+      "@demo-b/feat-map": ["libs/feat-map/src/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]

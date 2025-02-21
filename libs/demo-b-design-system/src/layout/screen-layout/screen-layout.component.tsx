@@ -14,16 +14,21 @@ export const ScreenLayout: React.FC<React.PropsWithChildren> = (props) => {
         backgroundColor: 'background.default',
       }}
     >
+      <ScreenHeader />
       <Container
         maxWidth="sm"
-        sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', pt: 6, pb: 8 }}
+        sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', pt: 2, pb: 8 }}
       >
         {children}
       </Container>
-      <Box position="absolute" top="0" left="0" right="0">
-        <ScreenHeader />
-      </Box>
-      <Box position="absolute" bottom="0" left="0" right="0" p={2}>
+
+      <Box
+        position="absolute"
+        bottom="var(--safe-area-inset-bottom)"
+        left="0"
+        right="0"
+        px={2}
+      >
         <BottomNavigation />
       </Box>
     </Stack>

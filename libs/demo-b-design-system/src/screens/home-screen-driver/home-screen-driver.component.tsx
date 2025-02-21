@@ -10,7 +10,7 @@ import {
   DeliveryOptionWalkIcon,
 } from '../../icons';
 
-export const HomeScreen: React.FC = () => {
+export const HomeScreenDriver: React.FC = () => {
   return (
     <ScreenLayout>
       <Stack direction="row" spacing={1} overflow="auto" mx={-2} px={2}>

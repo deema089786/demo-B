@@ -9,8 +9,8 @@ export const ScreenHeader: React.FC = () => {
       justifyContent="space-between"
       sx={{
         p: 1,
-        backdropFilter: 'blur(4px)',
-        borderBottom: '4px solid',
+        pt: (theme) => `calc(${theme.spacing(1)} + var(--safe-area-inset-top))`,
+        borderBottom: '2px solid',
         borderColor: (theme) => theme.palette.primary.main,
       }}
     >

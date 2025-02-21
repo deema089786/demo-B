@@ -1,22 +1,50 @@
 PODS:
-  - Capacitor (6.1.2):
+  - Capacitor (7.0.1):
     - CapacitorCordova
-  - CapacitorCordova (6.1.2)
+  - CapacitorCommunitySafeArea (7.0.0-alpha.1):
+    - Capacitor
+  - CapacitorCordova (7.0.1)
+  - CapacitorGoogleMaps (7.0.1):
+    - Capacitor
+    - Google-Maps-iOS-Utils (~> 5.0)
+    - GoogleMaps (~> 8.4)
+  - Google-Maps-iOS-Utils (5.0.0):
+    - GoogleMaps (~> 8.0)
+  - GoogleMaps (8.4.0):
+    - GoogleMaps/Maps (= 8.4.0)
+  - GoogleMaps/Base (8.4.0)
+  - GoogleMaps/Maps (8.4.0):
+    - GoogleMaps/Base
 
 DEPENDENCIES:
   - "Capacitor (from `../../../node_modules/@capacitor/ios`)"
+  - "CapacitorCommunitySafeArea (from `../../../node_modules/@capacitor-community/safe-area`)"
   - "CapacitorCordova (from `../../../node_modules/@capacitor/ios`)"
+  - "CapacitorGoogleMaps (from `../../../node_modules/@capacitor/google-maps`)"
+
+SPEC REPOS:
+  trunk:
+    - Google-Maps-iOS-Utils
+    - GoogleMaps
 
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../../node_modules/@capacitor/ios"
+  CapacitorCommunitySafeArea:
+    :path: "../../../node_modules/@capacitor-community/safe-area"
   CapacitorCordova:
     :path: "../../../node_modules/@capacitor/ios"
+  CapacitorGoogleMaps:
+    :path: "../../../node_modules/@capacitor/google-maps"
 
 SPEC CHECKSUMS:
-  Capacitor: 679f9673fdf30597493a6362a5d5bf233d46abc2
-  CapacitorCordova: f48c89f96c319101cd2f0ce8a2b7449b5fb8b3dd
+  Capacitor: 23fff43571a4d1e3ee7d67b5a3588c6e757c2913
+  CapacitorCommunitySafeArea: cc370b4f8d4aa340e4616acef9b73eda41ba0914
+  CapacitorCordova: 63d476958d5022d76f197031e8b7ea3519988c64
+  CapacitorGoogleMaps: b8730f29cfbe1ca0b8caa8ac2b2db230162e02b7
+  Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
+  GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
 
-PODFILE CHECKSUM: 85ecc219bc74e6f1bf08d74a1b99da4ac507d7b0
+PODFILE CHECKSUM: 56ebaf0fd9f1ab955014fdf8636430dcf6f649ae
 
 COCOAPODS: 1.14.3
