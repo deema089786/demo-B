@@ -6,15 +6,10 @@ export const Map: React.FC = () => {
   const mapRef = useRef<GoogleMap | null>(null);
   const isMapLoading = useRef<boolean>(false);
   useEffect(() => {
-    console.log('1');
     if (!mapContainerRef.current) return;
-    console.log('2');
-
     if (mapRef.current) return;
-    console.log('3');
-
     if (isMapLoading.current) return;
-    console.log('Starting map...');
+
     const exec = async () => {
       if (!mapContainerRef.current) return;
       isMapLoading.current = true;

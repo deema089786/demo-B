@@ -24,7 +24,7 @@ export const ScreenLayout: React.FC<React.PropsWithChildren> = (props) => {
 
       <Box
         position="absolute"
-        bottom="var(--safe-area-inset-bottom)"
+        bottom="max(var(--safe-area-inset-bottom), 16px)"
         left="0"
         right="0"
         px={2}
