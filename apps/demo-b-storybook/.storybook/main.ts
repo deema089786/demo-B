@@ -5,12 +5,15 @@ const config: StorybookConfig = {
     '../../../libs/demo-b-design-system/**/*.mdx',
     '../../../libs/demo-b-design-system/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
+
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-themes',
   ],
+
   staticDirs: ['../../demo-b-app/public'],
+
   framework: {
     name: '@storybook/react-vite',
     options: {
@@ -19,6 +22,12 @@ const config: StorybookConfig = {
       },
     },
   },
+
+  docs: {},
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript'
+  }
 };
 
 export default config;

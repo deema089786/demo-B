@@ -13,12 +13,13 @@ export const Map: React.FC = () => {
     const exec = async () => {
       if (!mapContainerRef.current) return;
       isMapLoading.current = true;
-      mapRef.current = await GoogleMap.create({
+      const map = await GoogleMap.create({
         id: 'my-cool-map',
         element: mapContainerRef.current,
-        // apiKey: process.env.REACT_APP_YOUR_API_KEY_HERE,
+        // @ts-expect-error apiKey: process.env.REACT_APP_YOUR_API_KEY_HERE,
         apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string,
         config: {
+          disableDefaultUI: true,
           center: {
             lat: 33.6,
             lng: -117.9,
@@ -26,6 +27,8 @@ export const Map: React.FC = () => {
           zoom: 8,
         },
       });
+
+      mapRef.current = map;
       isMapLoading.current = false;
     };
     exec().catch(console.error);

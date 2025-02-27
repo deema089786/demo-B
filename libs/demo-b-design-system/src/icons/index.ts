@@ -9,3 +9,8 @@ export { DeliveryOptionWalkIcon } from './delivery-option-walk-icon';
 export { RouteIcon } from './route-icon';
 export { RouteFromIcon } from './route-from-icon';
 export { RouteToIcon } from './route-to-icon';
+export { MoreHorizontalIcon } from './more-horizontal-icon';
+export { AcceptOrderIcon } from './accept-order-icon';
+export { HideIcon } from './hide-icon';
+export { LogoutIcon } from './logout-icon';
+export { DeleteAccountIcon } from './delete-account-icon';

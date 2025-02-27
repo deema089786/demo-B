@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Box } from '@mui/material';
+import { Stack, Box, Button } from '@mui/material';
 import { Map } from '@demo-b/feat-map';
 
 import { ScreenLayout } from '../../layout';
@@ -69,6 +69,9 @@ export const HomeScreenCustomer: React.FC = () => {
         >
           <Map />
         </Box>
+        <Button size="large" variant="contained" fullWidth>
+          Place the order
+        </Button>
       </Stack>
     </ScreenLayout>
   );

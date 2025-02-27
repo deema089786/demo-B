@@ -2,46 +2,41 @@ import React from 'react';
 import { Stack } from '@mui/material';
 
 import { ScreenLayout } from '../../layout';
-import { DeliveryOptionCard } from '../../atoms';
-import {
-  DeliveryOptionCarIcon,
-  DeliveryOptionMotoIcon,
-  DeliveryOptionTruckIcon,
-  DeliveryOptionWalkIcon,
-} from '../../icons';
+import { DriverOrderListItem } from '../../molecules/driver-order-list-item';
 
-export const HomeScreenDriver: React.FC = () => {
+export type HomeScreenDriverProps = {
+  orders: {
+    id: string;
+    price: number;
+    route: {
+      timeTotalMin: number;
+      distanceTotalKm: number;
+      from: {
+        address: string;
+        timeMin: number;
+        distanceKm: number;
+      };
+      to: {
+        address: string;
+        timeMin: number;
+        distanceKm: number;
+      };
+    };
+  }[];
+};
+
+export const HomeScreenDriver: React.FC<HomeScreenDriverProps> = (props) => {
+  const { orders } = props;
   return (
     <ScreenLayout>
-      <Stack direction="row" spacing={1} overflow="auto" mx={-2} px={2}>
-        <DeliveryOptionCard
-          selected
-          color="#e2dcff"
-          title="From $8.99"
-          subTitle="by Courier"
-          icon={<DeliveryOptionWalkIcon />}
-        />
-        <DeliveryOptionCard
-          selected={false}
-          color="#e2dcff"
-          title="From $19.99"
-          subTitle="by Scooter driver"
-          icon={<DeliveryOptionMotoIcon />}
-        />
-        <DeliveryOptionCard
-          selected={false}
-          color="#e2dcff"
-          title="From $25.99"
-          subTitle="by Car driver"
-          icon={<DeliveryOptionCarIcon />}
-        />
-        <DeliveryOptionCard
-          selected={false}
-          color="#e2dcff"
-          title="From $35.99"
-          subTitle="by Truck driver"
-          icon={<DeliveryOptionTruckIcon />}
-        />
+      <Stack spacing={1}>
+        {orders.map((order) => (
+          <DriverOrderListItem
+            key={order.id}
+            price={order.price}
+            route={order.route}
+          />
+        ))}
       </Stack>
     </ScreenLayout>
   );

@@ -3,11 +3,14 @@ import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { theme } from '@demo-b/demo-b-design-system';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import './global.css';
 
 const preview: Preview = {
   parameters: {
     layout: 'centered',
   },
+
+  tags: ['autodocs'],
 };
 
 export default preview;
