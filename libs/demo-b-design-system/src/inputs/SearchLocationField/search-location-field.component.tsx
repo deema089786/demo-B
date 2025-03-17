@@ -1,7 +1,12 @@
 import React from 'react';
-import { InputAdornment, Paper, TextField } from '@mui/material';
+import {
+  InputAdornment,
+  Paper,
+  TextField,
+  TextFieldProps,
+} from '@mui/material';
 
-type SearchLocationFieldProps = {
+export type SearchLocationFieldProps = TextFieldProps & {
   label?: string;
   placeholder?: string;
   icon?: React.ReactNode;
@@ -10,7 +15,7 @@ type SearchLocationFieldProps = {
 export const SearchLocationField: React.FC<SearchLocationFieldProps> = (
   props,
 ) => {
-  const { label, placeholder, icon } = props;
+  const { label, placeholder, icon, ...rest } = props;
   return (
     <Paper>
       <TextField
@@ -26,6 +31,7 @@ export const SearchLocationField: React.FC<SearchLocationFieldProps> = (
             ) : undefined,
           },
         }}
+        {...rest}
       />
     </Paper>
   );

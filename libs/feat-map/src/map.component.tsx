@@ -1,38 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { GoogleMap } from '@capacitor/google-maps';
+import React, { useRef } from 'react';
+
+import { useMap } from './use-map.hook';
 
 export const Map: React.FC = () => {
   const mapContainerRef = useRef<HTMLElement>();
-  const mapRef = useRef<GoogleMap | null>(null);
-  const isMapLoading = useRef<boolean>(false);
-  useEffect(() => {
-    if (!mapContainerRef.current) return;
-    if (mapRef.current) return;
-    if (isMapLoading.current) return;
-
-    const exec = async () => {
-      if (!mapContainerRef.current) return;
-      isMapLoading.current = true;
-      const map = await GoogleMap.create({
-        id: 'my-cool-map',
-        element: mapContainerRef.current,
-        // @ts-expect-error apiKey: process.env.REACT_APP_YOUR_API_KEY_HERE,
-        apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string,
-        config: {
-          disableDefaultUI: true,
-          center: {
-            lat: 33.6,
-            lng: -117.9,
-          },
-          zoom: 8,
-        },
-      });
-
-      mapRef.current = map;
-      isMapLoading.current = false;
-    };
-    exec().catch(console.error);
-  }, []);
+  const { map, isLoading } = useMap({ ref: mapContainerRef });
+  console.log({ isLoading, map });
 
   return (
     <capacitor-google-map

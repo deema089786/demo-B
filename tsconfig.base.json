@@ -20,6 +20,8 @@
         "libs/demo-b-design-system/src/index.ts"
       ],
       "@demo-b/feat-map": ["libs/feat-map/src/index.ts"],
+      "@demo-b/data-places": ["libs/data-places/src/index.ts"],
+      "@demo-b/data-tanstack-form": ["libs/data-tanstack-form/src/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]
