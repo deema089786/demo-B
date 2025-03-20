@@ -1,12 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
-const isPlacesService = (
-  data: unknown,
-): data is google.maps.places.PlacesService => {
-  if (!data) return false;
-  return data instanceof google.maps.places.PlacesService;
-};
+import { Place } from './places.types';
 
 export const useSearchPlaces = () => {
   const {
@@ -39,25 +34,19 @@ export const useSearchPlaces = () => {
   }, []);
 
   return useCallback(
-    async (
-      val: string,
-    ): Promise<
-      {
-        addressPrimary: string;
-        addressSecondary: string;
-        placeId: string;
-        getPlaceInfo: () => Promise<google.maps.Place>;
-      }[]
-    > => {
+    async (val: string): Promise<Place[]> => {
       if (!autocompleteService) return [];
       const { predictions } = await autocompleteService.getPlacePredictions({
         input: val,
       });
       console.log(predictions);
       return predictions.map((result) => ({
-        placeId: result.place_id,
-        addressPrimary: result.structured_formatting.main_text,
-        addressSecondary: result.structured_formatting.secondary_text,
+        id: result.place_id,
+        address: {
+          primary: result.structured_formatting.main_text,
+          secondary: result.structured_formatting.secondary_text,
+        },
+        displayName: result.description,
         getPlaceInfo: () => getPlaceInfo({ placeId: result.place_id }),
       }));
     },

@@ -8,13 +8,15 @@ type OptionCardProps = {
   selected: boolean;
   imageSrc: string;
   label: string;
+  onClick?: () => void;
 };
 
 export const OptionCard: React.FC<OptionCardProps> = (props) => {
-  const { selected, imageSrc, label } = props;
+  const { selected, imageSrc, label, onClick } = props;
   return (
     <Paper
       component={ButtonBase}
+      onClick={onClick}
       variant="outlined"
       sx={{
         transition: 'all 250ms ease-out',

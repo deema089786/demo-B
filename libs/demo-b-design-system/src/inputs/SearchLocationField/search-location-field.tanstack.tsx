@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFieldContext } from '@demo-b/data-tanstack-form';
+import { Place } from '@demo-b/data-places';
 
 import {
   SearchLocationField,
@@ -9,12 +10,12 @@ import {
 export const SearchLocationFieldTanstack: React.FC<SearchLocationFieldProps> = (
   props,
 ) => {
-  const field = useFieldContext<string>();
+  const field = useFieldContext<Place | null>();
   return (
     <SearchLocationField
       {...props}
       value={field.state.value}
-      onChange={(e) => field.handleChange(e.target.value)}
+      onChange={field.handleChange}
     />
   );
 };

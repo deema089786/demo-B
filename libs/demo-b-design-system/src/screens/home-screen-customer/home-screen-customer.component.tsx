@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Stack, Box, Button } from '@mui/material';
 import { Map } from '@demo-b/feat-map';
 import { z } from 'zod';
 import { useForm } from '@demo-b/data-tanstack-form';
-import { useSearchPlaces } from '@demo-b/data-places';
-import { useStore } from '@tanstack/react-form';
+import { PlaceSchema } from '@demo-b/data-places';
 
 import { ScreenLayout } from '../../layout';
 import { DeliveryOptionCard } from '../../atoms';
@@ -18,24 +17,16 @@ import {
 } from '../../icons';
 
 export const HomeScreenCustomer: React.FC = () => {
-  const [places, setPlaces] = useState<
-    {
-      addressPrimary: string;
-      addressSecondary: string;
-      placeId: string;
-      getPlaceInfo: () => Promise<google.maps.Place>;
-    }[]
-  >([]);
   const form = useForm({
     defaultValues: {
-      locationFrom: '',
-      locationTo: '',
+      locationFrom: null,
+      locationTo: null,
     },
     validators: {
       // Pass a schema or function to validate
       onChange: z.object({
-        locationFrom: z.string(),
-        locationTo: z.string(),
+        locationFrom: PlaceSchema.nullable(),
+        locationTo: PlaceSchema.nullable(),
       }),
     },
     onSubmit: ({ value }) => {
@@ -43,20 +34,7 @@ export const HomeScreenCustomer: React.FC = () => {
       alert(JSON.stringify(value, null, 2));
     },
   });
-  const locationFrom = useStore(
-    form.store,
-    (state) => state.values.locationFrom,
-  );
-  const getPlaces = useSearchPlaces();
-  useEffect(() => {
-    console.log({ value: locationFrom });
-    const exec = async () => {
-      const res = await getPlaces(locationFrom);
-      console.log(res);
-      setPlaces(res);
-    };
-    exec().catch(console.error);
-  }, [locationFrom, getPlaces]);
+
   return (
     <ScreenLayout>
       <Stack spacing={2} useFlexGap>
@@ -141,19 +119,6 @@ export const HomeScreenCustomer: React.FC = () => {
         >
           Place the order
         </Button>
-        {places.map((place) => (
-          <Button
-            onClick={async () => {
-              const info = await place.getPlaceInfo();
-              console.log({
-                lat: info.location?.lat(),
-                lng: info.location?.lng(),
-              });
-            }}
-          >
-            {place.addressPrimary}
-          </Button>
-        ))}
       </Stack>
     </ScreenLayout>
   );
