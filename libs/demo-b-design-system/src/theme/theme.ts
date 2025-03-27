@@ -23,8 +23,8 @@ export const theme = createTheme({
       main: red.A400,
     },
     background: {
-      default: '#1d1e22',
-      paper: '#27282e',
+      default: '#161719',
+      paper: '#3c313c',
     },
   },
   typography: {

@@ -19,18 +19,20 @@ type DeliveryOptionCardProps = {
   title: string;
   subTitle: string;
   icon: React.ReactNode;
+  onClick?(): void;
 };
 
 export const DeliveryOptionCard: React.FC<DeliveryOptionCardProps> = (
   props,
 ) => {
-  const { color, selected, title, subTitle, icon } = props;
+  const { color, selected, title, subTitle, icon, onClick } = props;
   const colorLight = lighten(color, 0.9);
   const colorDark = darken(color, 0.5);
 
   return (
     <Paper
       component={ButtonBase}
+      onClick={onClick}
       sx={{
         p: selected ? 0 : 1,
         display: 'flex',

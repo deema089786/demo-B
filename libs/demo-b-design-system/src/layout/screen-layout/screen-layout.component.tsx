@@ -17,7 +17,7 @@ export const ScreenLayout: React.FC<React.PropsWithChildren> = (props) => {
       <ScreenHeader />
       <Container
         maxWidth="sm"
-        sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', pt: 2, pb: 8 }}
+        sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', pt: 2, pb: 12 }}
       >
         {children}
       </Container>

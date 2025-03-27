@@ -6,30 +6,22 @@ import { useForm } from '@demo-b/data-tanstack-form';
 import { PlaceSchema } from '@demo-b/data-places';
 
 import { ScreenLayout } from '../../layout';
-import { DeliveryOptionCard } from '../../atoms';
-import {
-  DeliveryOptionCarIcon,
-  DeliveryOptionMotoIcon,
-  DeliveryOptionTruckIcon,
-  DeliveryOptionWalkIcon,
-  RouteFromIcon,
-  RouteToIcon,
-} from '../../icons';
+import { RouteFromIcon, RouteToIcon } from '../../icons';
+import { DriverOrderListItem } from '../../molecules/driver-order-list-item';
+import { PlaceOrder, placeOrderSchema } from './home-screen-customer.schema';
 
 export const HomeScreenCustomer: React.FC = () => {
   const form = useForm({
     defaultValues: {
+      deliveryType: 'byScooter',
       locationFrom: null,
       locationTo: null,
-    },
+    } as PlaceOrder,
     validators: {
-      // Pass a schema or function to validate
-      onChange: z.object({
-        locationFrom: PlaceSchema.nullable(),
-        locationTo: PlaceSchema.nullable(),
-      }),
+      onChange: placeOrderSchema,
     },
-    onSubmit: ({ value }) => {
+    onSubmit: async ({ value }) => {
+      await new Promise((res) => setTimeout(res, 1000));
       // Do something with form data
       alert(JSON.stringify(value, null, 2));
     },
@@ -37,37 +29,19 @@ export const HomeScreenCustomer: React.FC = () => {
 
   return (
     <ScreenLayout>
-      <Stack spacing={2} useFlexGap>
-        <Stack direction="row" spacing={1} overflow="auto" mx={-2} px={2}>
-          <DeliveryOptionCard
-            selected
-            color="#e2dcff"
-            title="From $8.99"
-            subTitle="by Courier"
-            icon={<DeliveryOptionWalkIcon />}
-          />
-          <DeliveryOptionCard
-            selected={false}
-            color="#e2dcff"
-            title="From $19.99"
-            subTitle="by Scooter driver"
-            icon={<DeliveryOptionMotoIcon />}
-          />
-          <DeliveryOptionCard
-            selected={false}
-            color="#e2dcff"
-            title="From $25.99"
-            subTitle="by Car driver"
-            icon={<DeliveryOptionCarIcon />}
-          />
-          <DeliveryOptionCard
-            selected={false}
-            color="#e2dcff"
-            title="From $35.99"
-            subTitle="by Truck driver"
-            icon={<DeliveryOptionTruckIcon />}
-          />
-        </Stack>
+      <Stack
+        spacing={2}
+        useFlexGap
+        component="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}
+      >
+        <form.AppField
+          name="deliveryType"
+          children={(field) => <field.DeliveryTypeSelector />}
+        />
         <Box position="relative" zIndex={1}>
           <Stack spacing={1} position="absolute" width="100%" pt={2}>
             <form.AppField
@@ -88,14 +62,6 @@ export const HomeScreenCustomer: React.FC = () => {
                 />
               )}
             />
-            {/*<SearchLocationField*/}
-            {/*  placeholder="From location"*/}
-            {/*  icon={<RouteFromIcon color="primary" />}*/}
-            {/*/>*/}
-            {/*<SearchLocationField*/}
-            {/*  placeholder="To destination"*/}
-            {/*  icon={<RouteToIcon color="primary" />}*/}
-            {/*/>*/}
           </Stack>
         </Box>
         <Box
@@ -107,18 +73,54 @@ export const HomeScreenCustomer: React.FC = () => {
         >
           <Map />
         </Box>
-        {/*<Button size="large" variant="contained" fullWidth>*/}
-        {/*  Place the order*/}
-        {/*</Button>*/}
-        <Button
-          onClick={form.handleSubmit}
-          type="submit"
-          size="large"
-          variant="contained"
-          fullWidth
-        >
-          Place the order
-        </Button>
+        <form.Subscribe
+          selector={(state) => [
+            state.values.deliveryType,
+            state.values.locationFrom,
+            state.values.locationTo,
+          ]}
+          children={([deliveryType, locationFrom, locationTo]) => (
+            <DriverOrderListItem
+              actionsDisabled
+              price={13}
+              deliveryType={deliveryType}
+              route={{
+                timeTotalMin: 23,
+                distanceTotalKm: 3.5,
+                from: {
+                  address: locationFrom
+                    ? locationFrom.displayName
+                    : 'Main street 55',
+                  timeMin: 8,
+                  distanceKm: 0.6,
+                },
+                to: {
+                  address: locationTo
+                    ? locationTo.displayName
+                    : 'Main street 55 Old way home',
+                  timeMin: 15,
+                  distanceKm: 2.9,
+                },
+              }}
+            />
+          )}
+        />
+
+        <form.Subscribe
+          selector={(state) => [state.canSubmit, state.isSubmitting]}
+          children={([canSubmit, isSubmitting]) => (
+            <Button
+              type="submit"
+              size="large"
+              variant="contained"
+              fullWidth
+              disabled={!canSubmit}
+            >
+              Place the order
+              {isSubmitting && '...'}
+            </Button>
+          )}
+        />
       </Stack>
     </ScreenLayout>
   );

@@ -21,9 +21,11 @@ import {
   RouteFromIcon,
   RouteToIcon,
 } from '../../icons';
+import { deliveryTypeIcon } from './driver-order-list-item.constants';
 
 type DriverOrderListItemProps = {
   price: number;
+  deliveryType: 'byCourier' | 'byScooter' | 'byCar' | 'byTruck';
   route: {
     timeTotalMin: number;
     distanceTotalKm: number;
@@ -38,12 +40,13 @@ type DriverOrderListItemProps = {
       distanceKm: number;
     };
   };
+  actionsDisabled?: boolean;
 };
 
 export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
   props,
 ) => {
-  const { price, route } = props;
+  const { price, deliveryType, route, actionsDisabled = false } = props;
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -99,7 +102,7 @@ export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
             borderRadius: '12px',
           }}
         >
-          <DeliveryOptionCarIcon color="primary" />
+          {deliveryTypeIcon[deliveryType]}
         </Stack>
       </Stack>
       <Paper
@@ -127,48 +130,50 @@ export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
           </ListItem>
         </List>
       </Paper>
-      <Stack spacing={1}>
-        <Paper
-          sx={{
-            bgcolor: '#017a4a',
-            flex: 1,
-            borderRadius: '12px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-          component={ButtonBase}
-        >
-          <AcceptOrderIcon />
-          <Typography variant="caption">Accept</Typography>
-        </Paper>
-        <Button
-          sx={{ borderRadius: '12px' }}
-          aria-controls={open ? 'basic-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-        >
-          <MoreHorizontalIcon />
-        </Button>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}
-        >
-          <MenuItem dense onClick={handleClose}>
-            <ListItemText primary="View details" />
-          </MenuItem>
-          <MenuItem dense onClick={handleClose} sx={{ color: 'error.main' }}>
-            <HideIcon sx={{ mr: 1 }} />
-            <ListItemText sx={{ ml: 'auto' }} primary="Hide" />
-          </MenuItem>
-        </Menu>
-      </Stack>
+      {!actionsDisabled && (
+        <Stack spacing={1}>
+          <Paper
+            sx={{
+              bgcolor: '#017a4a',
+              flex: 1,
+              borderRadius: '12px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+            component={ButtonBase}
+          >
+            <AcceptOrderIcon />
+            <Typography variant="caption">Accept</Typography>
+          </Paper>
+          <Button
+            sx={{ borderRadius: '12px' }}
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            <MoreHorizontalIcon />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem dense onClick={handleClose}>
+              <ListItemText primary="View details" />
+            </MenuItem>
+            <MenuItem dense onClick={handleClose} sx={{ color: 'error.main' }}>
+              <HideIcon sx={{ mr: 1 }} />
+              <ListItemText sx={{ ml: 'auto' }} primary="Hide" />
+            </MenuItem>
+          </Menu>
+        </Stack>
+      )}
     </Stack>
   );
 };
