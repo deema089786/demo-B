@@ -2,8 +2,10 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: [
-    '../../../libs/demo-b-design-system/**/*.mdx',
-    '../../../libs/demo-b-design-system/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../../../libs/ui-design-system/**/*.mdx',
+    '../../../libs/ui-design-system/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../../../libs/feat-*/**/*.mdx',
+    '../../../libs/feat-*/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
 
   addons: [
@@ -26,8 +28,8 @@ const config: StorybookConfig = {
   docs: {},
 
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
-  }
+    reactDocgen: 'react-docgen-typescript',
+  },
 };
 
 export default config;

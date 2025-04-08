@@ -1,0 +1,9 @@
+{
+  "name": "feat-home-driver",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feat-home-driver/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project feat-home-driver --web",
+  "targets": {}
+}

@@ -1,0 +1,9 @@
+{
+  "name": "data-msw-handlers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-msw-handlers/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project data-msw-handlers --web",
+  "targets": {}
+}

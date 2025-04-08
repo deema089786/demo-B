@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomeScreenCustomer } from '@demo-b/demo-b-design-system';
+import { HomeScreenCustomer } from '@demo-b/ui-design-system';
+import { SignupController } from '@demo-b/feat-signup';
 
-import { SignupScreenController, NotFoundScreenController } from './screens';
+import { NotFoundScreenController } from './screens';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +11,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <SignupScreenController />,
+    element: <SignupController />,
   },
   { path: '*', element: <NotFoundScreenController /> },
 ]);

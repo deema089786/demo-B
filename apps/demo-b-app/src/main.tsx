@@ -2,12 +2,14 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import { theme } from '@demo-b/demo-b-design-system';
+import { theme } from '@demo-b/ui-design-system';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@capacitor-community/safe-area';
+import { setupWorker } from 'msw/browser';
+import { allSignupHandlers } from '@demo-b/data-msw-handlers';
 
 import App from './app/app';
-import { mocksWorker } from './app/mocks';
+export const mocksWorker = setupWorker(...[...allSignupHandlers]);
 
 const queryClient = new QueryClient();
 

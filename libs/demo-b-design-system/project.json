@@ -1,9 +1,0 @@
-{
-  "name": "demo-b-design-system",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/demo-b-design-system/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project demo-b-design-system --web",
-  "targets": {}
-}

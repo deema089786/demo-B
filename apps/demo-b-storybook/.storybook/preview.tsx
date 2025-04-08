@@ -1,11 +1,19 @@
 import type { Preview } from '@storybook/react';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { theme } from '@demo-b/demo-b-design-system';
+import { theme } from '@demo-b/ui-design-system';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 
 import './global.css';
+
+/*
+ * Initializes MSW
+ * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
+ * to learn how to customize it
+ */
+initialize();
 
 const queryClient = new QueryClient();
 
@@ -15,6 +23,9 @@ const preview: Preview = {
   },
 
   tags: ['autodocs'],
+  loaders: [
+    mswLoader, // 👈 Add the MSW loader to all stories
+  ],
   decorators: [
     withThemeFromJSXProvider({
       themes: {
