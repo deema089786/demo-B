@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse } from 'msw';
 import { SignupMutationPayload } from '@demo-b/data-user';
 
 export const signupDriverSuccessHandler = http.post<any, SignupMutationPayload>(
@@ -6,6 +6,7 @@ export const signupDriverSuccessHandler = http.post<any, SignupMutationPayload>(
   async ({ request }) => {
     const data = await request.clone().json();
     if (data.phoneNumber === '+155555555' && data.userType === 'driver') {
+      await delay(1000);
       return HttpResponse.json({
         accessToken: 'mocked-access-token',
         refreshToken: 'mocked-refresh-token',
@@ -22,6 +23,7 @@ export const signupCustomerSuccessHandler = http.post<
 >('https://api.com/signup', async ({ request }) => {
   const data = await request.clone().json();
   if (data.phoneNumber === '+122222222' && data.userType === 'customer') {
+    await delay(1000);
     return HttpResponse.json({
       accessToken: 'mocked-access-token',
       refreshToken: 'mocked-refresh-token',
@@ -34,6 +36,7 @@ export const signupCustomerSuccessHandler = http.post<
 export const signupFallbackErrorHandler = http.post<any, SignupMutationPayload>(
   'https://api.com/signup',
   async () => {
+    await delay(1000);
     return HttpResponse.error();
   },
 );

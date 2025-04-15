@@ -1,0 +1,9 @@
+{
+  "name": "feat-notifications",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feat-notifications/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project feat-notifications --web",
+  "targets": {}
+}

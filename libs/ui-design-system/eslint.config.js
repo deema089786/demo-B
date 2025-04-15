@@ -12,7 +12,7 @@ module.exports = [
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          allow: ['@demo-b/data-tanstack-form'],
+          allow: ['@demo-b/util-tanstack-form'],
         },
       ],
     },

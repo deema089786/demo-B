@@ -17,14 +17,17 @@
     "baseUrl": ".",
     "paths": {
       "@demo-b/data-msw-handlers": ["libs/data-msw-handlers/src/index.ts"],
+      "@demo-b/data-notifications": ["libs/data-notifications/src/index.ts"],
       "@demo-b/data-orders": ["libs/data-orders/src/index.ts"],
       "@demo-b/data-places": ["libs/data-places/src/index.ts"],
-      "@demo-b/data-tanstack-form": ["libs/data-tanstack-form/src/index.ts"],
       "@demo-b/data-user": ["libs/data-user/src/index.ts"],
+      "@demo-b/feat-home-customer": ["libs/feat-home-customer/src/index.ts"],
       "@demo-b/feat-home-driver": ["libs/feat-home-driver/src/index.ts"],
       "@demo-b/feat-map": ["libs/feat-map/src/index.ts"],
+      "@demo-b/feat-notifications": ["libs/feat-notifications/src/index.ts"],
       "@demo-b/feat-signup": ["libs/feat-signup/src/index.ts"],
-      "@demo-b/ui-design-system": ["libs/ui-design-system/src/index.ts"]
+      "@demo-b/ui-design-system": ["libs/ui-design-system/src/index.ts"],
+      "@demo-b/util-tanstack-form": ["libs/util-tanstack-form/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

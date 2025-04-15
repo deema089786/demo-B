@@ -15,6 +15,7 @@ type Story = StoryObj<typeof HomeScreenDriver>;
 
 export const Default: Story = {
   args: {
+    isLoading: false,
     orders: [
       {
         id: 'id1',
@@ -34,5 +35,12 @@ export const Default: Story = {
         },
       },
     ],
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    isLoading: true,
+    orders: [],
   },
 };

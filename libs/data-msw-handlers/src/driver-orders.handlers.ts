@@ -1,9 +1,10 @@
-import { http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse } from 'msw';
 import { DriverOrder } from '@demo-b/data-orders';
 
 export const driverOrdersSuccessHandler = http.get(
   'https://api.com/driver-orders',
   async () => {
+    await delay(1000);
     const data: DriverOrder[] = [
       {
         id: 'id1',

@@ -4,7 +4,7 @@ import { allDriverOrdersHandlers } from '@demo-b/data-msw-handlers';
 import { HomeDriverController } from './home-driver.controller';
 
 const meta: Meta<typeof HomeDriverController> = {
-  title: 'Features/HomeDriver',
+  title: 'Features/Home Driver',
   component: HomeDriverController,
   parameters: {
     layout: 'fullscreen',

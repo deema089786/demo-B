@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, InputAdornment, Stack, Typography } from '@mui/material';
 import { UserType } from '@demo-b/data-user';
-import { useForm } from '@demo-b/data-tanstack-form';
+import { useForm } from '@demo-b/util-tanstack-form';
 import { z } from 'zod';
 import { useStore } from '@tanstack/react-form';
 
@@ -9,7 +9,10 @@ import { UnauthorizedScreenLayout } from '../../layout';
 import { OptionCard } from '../../atoms';
 
 type SignupScreenProps = {
-  onSubmit: (value: { userType: UserType; phoneNumber: string }) => void;
+  onSubmit: (value: {
+    userType: UserType;
+    phoneNumber: string;
+  }) => Promise<unknown>;
 };
 
 export const SignupScreen: React.FC<SignupScreenProps> = (props) => {
@@ -30,6 +33,8 @@ export const SignupScreen: React.FC<SignupScreenProps> = (props) => {
   });
 
   const userType = useStore(form.store, (state) => state.values.userType);
+  const isSubmitting = useStore(form.store, (state) => state.isSubmitting);
+  console.log({ isSubmitting });
 
   return (
     <UnauthorizedScreenLayout>
@@ -82,6 +87,7 @@ export const SignupScreen: React.FC<SignupScreenProps> = (props) => {
               )}
             />
             <Button
+              loading={isSubmitting}
               type="submit"
               fullWidth
               size="large"

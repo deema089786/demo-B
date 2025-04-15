@@ -9,7 +9,7 @@ export const ScreenHeader: React.FC = () => {
       justifyContent="space-between"
       sx={{
         p: 1,
-        pt: (theme) => `calc(${theme.spacing(1)} + var(--safe-area-inset-top))`,
+        pt: 'max(var(--safe-area-inset-top, 0px), 8px)',
         borderBottom: '2px solid',
         borderColor: (theme) => theme.palette.primary.main,
       }}

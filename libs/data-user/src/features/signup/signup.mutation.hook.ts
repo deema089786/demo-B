@@ -10,10 +10,10 @@ type UseSignupMutationParams = {
 };
 export const useSignupMutation = (params: UseSignupMutationParams = {}) => {
   const { onSuccess, onError } = params;
-  const { isError, isPending, isSuccess, mutate } = useMutation({
+  const { isError, isPending, isSuccess, mutateAsync } = useMutation({
     onSuccess,
     onError,
-    mutationFn: (data: SignupMutationPayload) => {
+    mutationFn: async (data: SignupMutationPayload) => {
       return axios.request({
         url: 'https://api.com/signup',
         method: 'POST',
@@ -27,11 +27,11 @@ export const useSignupMutation = (params: UseSignupMutationParams = {}) => {
 
   return useMemo(
     () => ({
-      signup: mutate,
+      signup: mutateAsync,
       isError,
       isPending,
       isSuccess,
     }),
-    [isError, isPending, isSuccess, mutate],
+    [isError, isPending, isSuccess, mutateAsync],
   );
 };
