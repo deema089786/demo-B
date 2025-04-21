@@ -71,8 +71,6 @@ export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
           alignItems="center"
           justifyContent="center"
           sx={{
-            borderColor: 'primary.main',
-            color: 'primary.main',
             flex: 1,
             minHeight: 64,
             height: 64,
@@ -95,7 +93,6 @@ export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
           alignItems="center"
           justifyContent="center"
           sx={{
-            borderColor: 'primary.main',
             width: 64,
             height: 32,
             borderRadius: '12px',
@@ -104,14 +101,11 @@ export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
           {deliveryTypeIcon[deliveryType]}
         </Stack>
       </Stack>
-      <Paper
-        variant="outlined"
-        sx={{ flex: 1, borderColor: 'primary.main', borderRadius: '12px' }}
-      >
+      <Paper variant="outlined" sx={{ flex: 1, borderRadius: '12px' }}>
         <List dense>
           <ListItem dense>
             <ListItemIcon sx={{ minWidth: 0, mr: 1 }}>
-              <RouteFromIcon fontSize="small" color="primary" />
+              <RouteFromIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText
               primary={route.from.address}
@@ -120,7 +114,7 @@ export const DriverOrderListItem: React.FC<DriverOrderListItemProps> = (
           </ListItem>
           <ListItem dense>
             <ListItemIcon sx={{ minWidth: 0, mr: 1 }}>
-              <RouteToIcon fontSize="small" color="primary" />
+              <RouteToIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText
               primary={route.to.address}

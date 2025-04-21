@@ -25,6 +25,7 @@
       "@demo-b/feat-home-driver": ["libs/feat-home-driver/src/index.ts"],
       "@demo-b/feat-map": ["libs/feat-map/src/index.ts"],
       "@demo-b/feat-notifications": ["libs/feat-notifications/src/index.ts"],
+      "@demo-b/feat-settings": ["libs/feat-settings/src/index.ts"],
       "@demo-b/feat-signup": ["libs/feat-signup/src/index.ts"],
       "@demo-b/ui-design-system": ["libs/ui-design-system/src/index.ts"],
       "@demo-b/util-tanstack-form": ["libs/util-tanstack-form/src/index.ts"]

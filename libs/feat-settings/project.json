@@ -1,0 +1,9 @@
+{
+  "name": "feat-settings",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feat-settings/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project feat-settings --web",
+  "targets": {}
+}

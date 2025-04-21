@@ -17,7 +17,7 @@ export const MoreHorizontalIcon = (props: SvgIconProps) => (
         height="3"
         rx="1"
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <rect
         x="10.5"
@@ -26,7 +26,7 @@ export const MoreHorizontalIcon = (props: SvgIconProps) => (
         height="3"
         rx="1"
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <rect
         x="3"
@@ -35,7 +35,7 @@ export const MoreHorizontalIcon = (props: SvgIconProps) => (
         height="3"
         rx="1"
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </svg>
   </SvgIcon>

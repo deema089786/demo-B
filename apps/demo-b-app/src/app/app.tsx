@@ -1,19 +1,37 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomeScreenCustomer } from '@demo-b/ui-design-system';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
 import { SignupController } from '@demo-b/feat-signup';
-
-import { NotFoundScreenController } from './screens';
+import { NotificationsController } from '@demo-b/feat-notifications';
+import { HomeCustomerController } from '@demo-b/feat-home-customer';
+import { HomeDriverController } from '@demo-b/feat-home-driver';
+import { SettingsController } from '@demo-b/feat-settings';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <HomeScreenCustomer />,
+    path: '/customer',
+    element: <HomeCustomerController />,
+  },
+  {
+    path: '/driver',
+    element: <HomeDriverController />,
+  },
+  {
+    path: '/notifications',
+    element: <NotificationsController />,
+  },
+  {
+    path: '/settings',
+    element: <SettingsController />,
   },
   {
     path: '/signup',
     element: <SignupController />,
   },
-  { path: '*', element: <NotFoundScreenController /> },
+  // Native app can not have unknown routes
+  { path: '*', element: <Navigate to="/customer" replace /> },
 ]);
 
 export function App() {

@@ -19,7 +19,6 @@ export const NotificationListItem: React.FC<NotificationListProps> = (
       component={Stack}
       sx={{
         color: state === 'unread' ? 'text.primary' : 'text.secondary',
-        borderColor: state === 'unread' ? 'primary.main' : 'secondary.main',
       }}
       p={1}
     >

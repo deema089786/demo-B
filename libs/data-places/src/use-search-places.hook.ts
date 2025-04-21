@@ -24,12 +24,10 @@ export const useSearchPlaces = () => {
       'places',
     )) as unknown as google.maps.PlacesLibrary;
     const place = new Place({ id: params.placeId });
-    console.log(place);
     await place.fetchFields({
       fields: ['displayName', 'formattedAddress', 'location'],
     });
 
-    console.log(place);
     return place;
   }, []);
 
@@ -39,7 +37,6 @@ export const useSearchPlaces = () => {
       const { predictions } = await autocompleteService.getPlacePredictions({
         input: val,
       });
-      console.log(predictions);
       return predictions.map((result) => ({
         id: result.place_id,
         address: {

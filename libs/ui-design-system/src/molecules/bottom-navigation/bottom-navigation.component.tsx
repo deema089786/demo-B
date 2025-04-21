@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper, Stack, IconButton } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 import {
   HomeIcon,
@@ -22,16 +23,16 @@ export const BottomNavigation: React.FC = () => {
       borderRadius="10000px !important"
       sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}
     >
-      <IconButton color="inherit">
+      <IconButton color="inherit" component={NavLink} to="/customer">
         <HomeIcon />
       </IconButton>
-      <IconButton color="inherit">
+      <IconButton color="inherit" component={NavLink} to="/orders">
         <OrdersIcon />
       </IconButton>
-      <IconButton color="inherit">
+      <IconButton color="inherit" component={NavLink} to="/notifications">
         <NotificationIcon />
       </IconButton>
-      <IconButton color="inherit">
+      <IconButton color="inherit" component={NavLink} to="/settings">
         <SettingsIcon />
       </IconButton>
     </Paper>

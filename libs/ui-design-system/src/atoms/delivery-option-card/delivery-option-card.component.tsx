@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Paper,
   Stack,
-  lighten,
-  darken,
   Typography,
   ButtonBase,
   Box,
@@ -11,10 +9,9 @@ import {
 } from '@mui/material';
 
 const SIZE_WIDTH = '120px';
-const SIZE_HEIGHT = '180px';
+const SIZE_HEIGHT = '150px';
 
 type DeliveryOptionCardProps = {
-  color: string;
   selected: boolean;
   title: string;
   subTitle: string;
@@ -25,12 +22,11 @@ type DeliveryOptionCardProps = {
 export const DeliveryOptionCard: React.FC<DeliveryOptionCardProps> = (
   props,
 ) => {
-  const { color, selected, title, subTitle, icon, onClick } = props;
-  const colorLight = lighten(color, 0.9);
-  const colorDark = darken(color, 0.5);
+  const { selected, title, subTitle, icon, onClick } = props;
 
   return (
     <Paper
+      variant={selected ? 'elevation' : 'outlined'}
       component={ButtonBase}
       onClick={onClick}
       sx={{
@@ -43,43 +39,27 @@ export const DeliveryOptionCard: React.FC<DeliveryOptionCardProps> = (
         width: SIZE_WIDTH,
         minWidth: SIZE_WIDTH,
         height: SIZE_HEIGHT,
-        bgcolor: color,
         overflow: 'hidden',
-        border: `4px solid ${colorLight}`,
-        borderWidth: selected ? '4px' : '0px',
+        border: selected ? '2px solid' : undefined,
+        borderColor: selected ? 'primary.main' : undefined,
       }}
     >
-      <Box
-        color={colorDark}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flex={1}
-      >
-        <SvgIcon fontSize={'large'} color="inherit">
+      <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
+        <SvgIcon fontSize={'large'} color={selected ? 'primary' : 'inherit'}>
           {icon}
         </SvgIcon>
       </Box>
       <Paper
-        elevation={selected ? 0 : 1}
         component={Stack}
+        variant={selected ? 'elevation' : 'outlined'}
         justifyContent="center"
         sx={{
-          borderRadius: selected ? '12px' : '16px',
+          borderRadius: '12px',
           transition: 'all 250ms ease-out',
-          // borderBottomLeftRadius: 0,
-          // borderBottomRightRadius: 0,
           height: selected ? '64px' : '48px',
-          bgcolor: colorLight,
-          color: colorDark,
         }}
       >
-        <Typography
-          variant="body2"
-          // fontWeight="bold"
-          textAlign="center"
-          lineHeight="0.9"
-        >
+        <Typography variant="body2" textAlign="center" lineHeight="0.9">
           {title}
         </Typography>
         <Typography variant="caption" textAlign="center" fontSize="0.6rem">

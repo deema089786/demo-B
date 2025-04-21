@@ -11,8 +11,8 @@ export const deliveryTypeIcon: Record<
   'byCourier' | 'byScooter' | 'byCar' | 'byTruck',
   React.ReactNode
 > = {
-  byCourier: <DeliveryOptionWalkIcon color="primary" />,
-  byScooter: <DeliveryOptionMotoIcon color="primary" />,
-  byCar: <DeliveryOptionCarIcon color="primary" />,
-  byTruck: <DeliveryOptionTruckIcon color="primary" />,
+  byCourier: <DeliveryOptionWalkIcon />,
+  byScooter: <DeliveryOptionMotoIcon />,
+  byCar: <DeliveryOptionCarIcon />,
+  byTruck: <DeliveryOptionTruckIcon />,
 };

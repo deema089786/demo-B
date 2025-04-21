@@ -8,23 +8,37 @@ export const theme = createTheme({
     borderRadius: 16,
   },
   palette: {
-    text: {
-      primary: '#ffffff',
-      secondary: '#acacac',
-      disabled: '#675d5d',
+    mode: 'dark',
+    background: {
+      default: '#000c12',
+      paper: '#0f1917',
     },
     primary: {
-      main: '#e6e6e6',
+      main: '#bdf3e8', // Primary 500
+      contrastText: '#233c37',
     },
     secondary: {
-      main: '#19857b',
+      main: '#f48bb3', // Secondary 500
+      contrastText: '#301b23',
     },
+
+    // text: {
+    //   primary: '#ffffff',
+    //   secondary: '#acacac',
+    //   disabled: '#675d5d',
+    // },
+    // primary: {
+    //   main: '#e6e6e6',
+    // },
+    // secondary: {
+    //   main: '#19857b',
+    // },
+    // background: {
+    //   default: '#161719',
+    //   paper: '#3c313c',
+    // },
     error: {
       main: red.A400,
-    },
-    background: {
-      default: '#161719',
-      paper: '#3c313c',
     },
   },
   typography: {

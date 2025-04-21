@@ -34,7 +34,6 @@ export const SignupScreen: React.FC<SignupScreenProps> = (props) => {
 
   const userType = useStore(form.store, (state) => state.values.userType);
   const isSubmitting = useStore(form.store, (state) => state.isSubmitting);
-  console.log({ isSubmitting });
 
   return (
     <UnauthorizedScreenLayout>

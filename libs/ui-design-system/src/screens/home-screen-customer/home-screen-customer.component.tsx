@@ -4,6 +4,8 @@ import { Map } from '@demo-b/feat-map';
 import { z } from 'zod';
 import { useForm } from '@demo-b/util-tanstack-form';
 import { PlaceSchema } from '@demo-b/data-places';
+import { useQuery } from '@tanstack/react-query';
+import { Geolocation } from '@capacitor/geolocation';
 
 import { ScreenLayout } from '../../layout';
 import { RouteFromIcon, RouteToIcon } from '../../icons';
@@ -11,6 +13,20 @@ import { DriverOrderListItem } from '../../molecules/driver-order-list-item';
 import { PlaceOrder, placeOrderSchema } from './home-screen-customer.schema';
 
 export const HomeScreenCustomer: React.FC = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['location-permissions'],
+    queryFn: async () => {
+      let permissions = await Geolocation.checkPermissions();
+      if (permissions.coarseLocation === 'prompt') {
+        permissions = await Geolocation.requestPermissions({
+          permissions: ['coarseLocation', 'location'],
+        });
+      }
+      return permissions;
+    },
+  });
+  console.log({ data, isLoading });
+
   const form = useForm({
     defaultValues: {
       deliveryType: 'byScooter',
