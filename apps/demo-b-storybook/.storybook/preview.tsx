@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 
 import './global.css';
+import { MemoryRouter } from 'react-router-dom';
 
 /*
  * Initializes MSW
@@ -37,9 +38,11 @@ const preview: Preview = {
       GlobalStyles: CssBaseline,
     }),
     (Story) => (
-      <QueryClientProvider client={queryClient}>
-        <Story />
-      </QueryClientProvider>
+      <MemoryRouter>
+        <QueryClientProvider client={queryClient}>
+          <Story />
+        </QueryClientProvider>
+      </MemoryRouter>
     ),
   ],
 };

@@ -1,31 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Stack, Box, Button } from '@mui/material';
 import { Map } from '@demo-b/feat-map';
-import { z } from 'zod';
 import { useForm } from '@demo-b/util-tanstack-form';
-import { PlaceSchema } from '@demo-b/data-places';
-import { useQuery } from '@tanstack/react-query';
-import { Geolocation } from '@capacitor/geolocation';
+import { Place } from '@demo-b/data-places';
 
 import { ScreenLayout } from '../../layout';
 import { RouteFromIcon, RouteToIcon } from '../../icons';
 import { DriverOrderListItem } from '../../molecules/driver-order-list-item';
 import { PlaceOrder, placeOrderSchema } from './home-screen-customer.schema';
 
-export const HomeScreenCustomer: React.FC = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['location-permissions'],
-    queryFn: async () => {
-      let permissions = await Geolocation.checkPermissions();
-      if (permissions.coarseLocation === 'prompt') {
-        permissions = await Geolocation.requestPermissions({
-          permissions: ['coarseLocation', 'location'],
-        });
-      }
-      return permissions;
-    },
-  });
-  console.log({ data, isLoading });
+export type HomeScreenCustomerProps = {
+  defaultLocation: Place | null;
+};
+
+export const HomeScreenCustomer: React.FC<HomeScreenCustomerProps> = (
+  props,
+) => {
+  const { defaultLocation } = props;
 
   const form = useForm({
     defaultValues: {
@@ -42,6 +33,10 @@ export const HomeScreenCustomer: React.FC = () => {
       alert(JSON.stringify(value, null, 2));
     },
   });
+
+  useEffect(() => {
+    form.setFieldValue('locationFrom', defaultLocation);
+  }, [defaultLocation, form]);
 
   return (
     <ScreenLayout>
@@ -95,31 +90,34 @@ export const HomeScreenCustomer: React.FC = () => {
             state.values.locationFrom,
             state.values.locationTo,
           ]}
-          children={([deliveryType, locationFrom, locationTo]) => (
-            <DriverOrderListItem
-              actionsDisabled
-              price={13}
-              deliveryType={deliveryType}
-              route={{
-                timeTotalMin: 23,
-                distanceTotalKm: 3.5,
-                from: {
-                  address: locationFrom
-                    ? locationFrom.displayName
-                    : 'Main street 55',
-                  timeMin: 8,
-                  distanceKm: 0.6,
-                },
-                to: {
-                  address: locationTo
-                    ? locationTo.displayName
-                    : 'Main street 55 Old way home',
-                  timeMin: 15,
-                  distanceKm: 2.9,
-                },
-              }}
-            />
-          )}
+          children={([deliveryType, locationFrom, locationTo]) => {
+            console.log({ locationFrom });
+            return (
+              <DriverOrderListItem
+                actionsDisabled
+                price={13}
+                deliveryType={deliveryType}
+                route={{
+                  timeTotalMin: 23,
+                  distanceTotalKm: 3.5,
+                  from: {
+                    address: locationFrom
+                      ? locationFrom.displayName
+                      : 'Main street 55',
+                    timeMin: 8,
+                    distanceKm: 0.6,
+                  },
+                  to: {
+                    address: locationTo
+                      ? locationTo.displayName
+                      : 'Main street 55 Old way home',
+                    timeMin: 15,
+                    distanceKm: 2.9,
+                  },
+                }}
+              />
+            );
+          }}
         />
 
         <form.Subscribe

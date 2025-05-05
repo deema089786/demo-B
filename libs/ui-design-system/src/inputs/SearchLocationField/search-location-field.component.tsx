@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import {
-  InputAdornment,
   Paper,
   TextField,
   type TextFieldProps,
   Autocomplete,
 } from '@mui/material';
-import { Place, useSearchPlaces } from '@demo-b/data-places';
+import {
+  Place,
+  PlaceSearchItem,
+  useSearchPlaces,
+  loadPlaceByPlaceId,
+} from '@demo-b/data-places';
 
 export type SearchLocationFieldProps = Omit<
   TextFieldProps,
@@ -23,17 +27,19 @@ export const SearchLocationField: React.FC<SearchLocationFieldProps> = (
   props,
 ) => {
   const { label, placeholder, icon, value, onChange, ...rest } = props;
-  const [places, setPlaces] = useState<Place[]>([]);
+  const [placeSearchItems, setPlaceSearchItems] = useState<PlaceSearchItem[]>(
+    [],
+  );
 
   const [inputValue, setInputValue] = React.useState('');
-  const getPlaces = useSearchPlaces();
+  const getPlacesSearchItem = useSearchPlaces();
   useEffect(() => {
     const exec = async () => {
-      const res = await getPlaces(String(inputValue));
-      setPlaces(res);
+      const res = await getPlacesSearchItem(String(inputValue));
+      setPlaceSearchItems(res);
     };
     exec().catch(console.error);
-  }, [getPlaces, inputValue]);
+  }, [getPlacesSearchItem, inputValue]);
 
   return (
     <Paper>
@@ -51,8 +57,17 @@ export const SearchLocationField: React.FC<SearchLocationFieldProps> = (
           );
         }}
         value={value}
-        onChange={(e, place) => onChange?.(place)}
-        options={places}
+        onChange={async (e, placeSearchItem) => {
+          if (!placeSearchItem) {
+            onChange?.(null);
+            return;
+          }
+          const place = await loadPlaceByPlaceId({
+            placeId: placeSearchItem.id,
+          });
+          onChange?.(place);
+        }}
+        options={placeSearchItems}
         autoComplete
         openOnFocus
         includeInputInList

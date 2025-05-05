@@ -1,17 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
-import { Place } from './places.types';
+import { PlaceSearchItem } from './places.types';
 
 export const useSearchPlaces = () => {
-  const {
-    isLoading,
-    data: autocompleteService,
-    error,
-  } = useQuery({
+  const { data: autocompleteService } = useQuery({
     queryKey: ['google-maps-places-lib'],
     queryFn: async () => {
-      const { AutocompleteService, Place } = (await google.maps.importLibrary(
+      const { AutocompleteService } = (await google.maps.importLibrary(
         'places',
       )) as unknown as google.maps.PlacesLibrary;
 
@@ -19,20 +15,8 @@ export const useSearchPlaces = () => {
     },
   });
 
-  const getPlaceInfo = useCallback(async (params: { placeId: string }) => {
-    const { Place } = (await google.maps.importLibrary(
-      'places',
-    )) as unknown as google.maps.PlacesLibrary;
-    const place = new Place({ id: params.placeId });
-    await place.fetchFields({
-      fields: ['displayName', 'formattedAddress', 'location'],
-    });
-
-    return place;
-  }, []);
-
   return useCallback(
-    async (val: string): Promise<Place[]> => {
+    async (val: string): Promise<PlaceSearchItem[]> => {
       if (!autocompleteService) return [];
       const { predictions } = await autocompleteService.getPlacePredictions({
         input: val,
@@ -44,9 +28,8 @@ export const useSearchPlaces = () => {
           secondary: result.structured_formatting.secondary_text,
         },
         displayName: result.description,
-        getPlaceInfo: () => getPlaceInfo({ placeId: result.place_id }),
       }));
     },
-    [autocompleteService, getPlaceInfo],
+    [autocompleteService],
   );
 };
